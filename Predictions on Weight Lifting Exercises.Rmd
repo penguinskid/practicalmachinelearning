@@ -2,7 +2,7 @@
 title: "Predictions on Weight Lifting Exercises"
 author: "Simon Coplan"
 date: "Sunday, May 24, 2015"
-output: pdf_document
+output: html_document
 ---
 
 #### Introduction
@@ -17,7 +17,7 @@ In order to find the variables to use, I examined the training data set and foun
 
 I assigned each sensor variables to individual data sets, and used the findCorrelation function from the caret package on each data set to eliminate variables that were correlated to one another.  Once I removed intra-sensor correlated variables, I combined all the sensor variables into one data set and removed inter-sensor correlated variables.  Finally, I created a data set containing all of the chosen sensor variables and the outcome variable classe.
 
-```{r, echo = TRUE, message = FALSE}
+```{r, echo = TRUE, message = FALSE, warning=FALSE}
 library(plyr)
 library(dplyr)
 library(caret)
@@ -68,7 +68,7 @@ After multiple attempts, I found that my computer did not have enough memory to 
 
 This unfortunate but necessary diversion also gave me the change to see how a model would work on a "test" data set (remember, I created a pre-testing set using 50% the original training data).
 
-```{r, echo = T, message = F}
+```{r, echo = TRUE, message = FALSE, warning=FALSE}
 intrain<-createDataPartition(y = pmltraintotal$classe, p = .5, list = F)
 
 pmltraintotalTRAIN<-pmltraintotal[intrain,]
@@ -80,7 +80,8 @@ pmlmodelrf<-randomForest(classe~., data = pmltraintotalTRAIN,importance = TRUE, 
 
 After creating the randomForest model, I wanted to see how well the model would predict on the classe variable.  So, I used half of the original training set as a test set (the code for which is shown and explained above) and predicted the classe variable.  Shown below is the confusion matrix, from which I found my out of sample error.
 
-``` {r, echo = TRUE}
+``` {r, echo = TRUE, message=FALSE, warning=FALSE}
+
 trainTESTprediction<-predict(pmlmodelrf, newdata = pmltraintotalTEST)
 
 confusionMatrix(trainTESTprediction, pmltraintotalTEST$classe)
@@ -90,7 +91,8 @@ I assumed that the out of sample error was 1-Accuracy, which leads me with an ou
 
 Finally, I subsetted the true testing data set to match the training set variables, and used the predict function to predict the classe (you'll notice that I used the random forest model that only used half of the original training data; remember, this was because my computer did not have enough memory to use all of the original training data. I am not showing the output, but wanted to explain that I did the prediction on the testing data.
 
-``` {r, echo = FALSE}
+``` {r, echo = FALSE, message = FALSE, warning=FALSE}
+
 pmltestingsub<-select(pmltesting, match(names(pmltrainsensors), colnames(pmltesting)))
 
 testprediction<-predict(pmlmodelrf, pmltestingsub)

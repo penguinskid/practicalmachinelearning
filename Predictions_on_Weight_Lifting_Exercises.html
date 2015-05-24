@@ -63,7 +63,7 @@ img {
 <div id="header">
 <h1 class="title">Predictions on Weight Lifting Exercises</h1>
 <h4 class="author"><em>Simon Coplan</em></h4>
-<h4 class="date"><em>Sunday, April 26, 2015</em></h4>
+<h4 class="date"><em>Sunday, May 24, 2015</em></h4>
 </div>
 
 
@@ -86,13 +86,26 @@ pmltesting&lt;-read.csv(file = &quot;pml-testing.csv&quot;)
 
 set.seed(2009)
 
-pmltrainbelt&lt;-select(pmltraining, roll_belt, pitch_belt, yaw_belt, gyros_belt_x, gyros_belt_y, gyros_belt_z, accel_belt_x, accel_belt_y, accel_belt_z, total_accel_belt, magnet_belt_x, magnet_belt_y, magnet_belt_z)
+pmltrainbelt&lt;-select(pmltraining, roll_belt, pitch_belt, yaw_belt, gyros_belt_x,
+                     gyros_belt_y, gyros_belt_z, accel_belt_x, accel_belt_y, 
+                     accel_belt_z, total_accel_belt, magnet_belt_x, magnet_belt_y,
+                     magnet_belt_z)
 
-pmltrainarm&lt;-select(pmltraining, roll_arm, pitch_arm, yaw_arm, gyros_arm_x, gyros_arm_y, gyros_arm_z, accel_arm_x, accel_arm_y, accel_arm_z, total_accel_arm, magnet_arm_x, magnet_arm_y, magnet_arm_z)
+pmltrainarm&lt;-select(pmltraining, roll_arm, pitch_arm, yaw_arm, gyros_arm_x, 
+                    gyros_arm_y, gyros_arm_z, accel_arm_x, accel_arm_y, accel_arm_z,
+                    total_accel_arm, magnet_arm_x, magnet_arm_y, magnet_arm_z)
 
-pmltraindumbbell&lt;-select(pmltraining, roll_dumbbell, pitch_dumbbell, yaw_dumbbell, gyros_dumbbell_x, gyros_dumbbell_y, gyros_dumbbell_z, accel_dumbbell_x, accel_dumbbell_y, accel_dumbbell_z, total_accel_dumbbell, magnet_dumbbell_x, magnet_dumbbell_y, magnet_dumbbell_z)
+pmltraindumbbell&lt;-select(pmltraining, roll_dumbbell, pitch_dumbbell, yaw_dumbbell,
+                         gyros_dumbbell_x, gyros_dumbbell_y, gyros_dumbbell_z,
+                         accel_dumbbell_x, accel_dumbbell_y, accel_dumbbell_z, 
+                         total_accel_dumbbell, magnet_dumbbell_x, magnet_dumbbell_y, 
+                         magnet_dumbbell_z)
 
-pmltrainforearm&lt;-select(pmltraining, roll_forearm, pitch_forearm, yaw_forearm, gyros_forearm_x, gyros_forearm_y, gyros_forearm_z, accel_forearm_x, accel_forearm_y, accel_forearm_z, total_accel_forearm, magnet_forearm_x, magnet_forearm_y, magnet_forearm_z)
+pmltrainforearm&lt;-select(pmltraining, roll_forearm, pitch_forearm, yaw_forearm, 
+                        gyros_forearm_x, gyros_forearm_y, gyros_forearm_z, 
+                        accel_forearm_x,accel_forearm_y, accel_forearm_z, 
+                        total_accel_forearm, magnet_forearm_x, magnet_forearm_y, 
+                        magnet_forearm_z)
 
 pmltrainbelt&lt;-select(pmltrainbelt, -findCorrelation(cor(pmltrainbelt)))
 
@@ -152,7 +165,7 @@ confusionMatrix(trainTESTprediction, pmltraintotalTEST$classe)</code></pre>
 ## Detection Prevalence   0.2858   0.1933   0.1760   0.1615   0.1834
 ## Balanced Accuracy      0.9980   0.9907   0.9898   0.9910   0.9979</code></pre>
 <p>I assumed that the out of sample error was 1-Accuracy, which leads me with an out of sample error of approximately 1-.9904 = .0096 (which is decent)</p>
-<p>Finally, I subsetted the true testing data set to match the training set variables, and used the predict function to predict the classe (you’ll notice that I used the random forest model that only used half of the original training data; remember, this was because my computer did not have enough memory to use all of the . I am not showing the code, but wanted to explain that I did the prediction on the testing data.</p>
+<p>Finally, I subsetted the true testing data set to match the training set variables, and used the predict function to predict the classe (you’ll notice that I used the random forest model that only used half of the original training data; remember, this was because my computer did not have enough memory to use all of the original training data. I am not showing the output, but wanted to explain that I did the prediction on the testing data.</p>
 </div>
 
 

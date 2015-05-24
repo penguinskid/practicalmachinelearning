@@ -2,7 +2,7 @@
 title: "Predictions on Weight Lifting Exercises"
 author: "Simon Coplan"
 date: "Sunday, May 24, 2015"
-output: pdf_document
+output: html_document
 ---
 
 #### Introduction
@@ -78,30 +78,6 @@ pmltraintotalTRAIN<-pmltraintotal[intrain,]
 pmltraintotalTEST<-pmltraintotal[-intrain,]
 
 pmlmodelrf<-randomForest(classe~., data = pmltraintotalTRAIN,importance = TRUE, proximity = TRUE)
-```
-
-```
-## Warning in randomForest.default(m, y, ...): Reached total allocation of
-## 3583Mb: see help(memory.size)
-```
-
-```
-## Warning in randomForest.default(m, y, ...): Reached total allocation of
-## 3583Mb: see help(memory.size)
-```
-
-```
-## Warning in randomForest.default(m, y, ...): Reached total allocation of
-## 3583Mb: see help(memory.size)
-```
-
-```
-## Warning in randomForest.default(m, y, ...): Reached total allocation of
-## 3583Mb: see help(memory.size)
-```
-
-```
-## Error: cannot allocate vector of size 367.3 Mb
 ```
 
 After creating the randomForest model, I wanted to see how well the model would predict on the classe variable.  So, I used half of the original training set as a test set (the code for which is shown and explained above) and predicted the classe variable.  Shown below is the confusion matrix, from which I found my out of sample error.
