@@ -149,6 +149,6 @@ confusionMatrix(trainTESTprediction, pmltraintotalTEST$classe)
 
 I assumed that the out of sample error was 1-Accuracy, which leads me with an out of sample error of approximately 1-.9904 = .0096 (which is decent)
 
-Finally, I subsetted the true testing data set to match the training set variables, and used the predict function to predict the classe (you'll notice that I used the random forest model that only used half of the original training data; remember, this was because my computer did not have enough memory to use all of the original training data. I am not showing the code, but wanted to explain that I did the prediction on the testing data.
+Finally, I subsetted the true testing data set to match the training set variables, and used the predict function to predict the classe (you'll notice that I used the random forest model that only used half of the original training data; remember, this was because my computer did not have enough memory to use all of the original training data. I am not showing the output, but wanted to explain that I did the prediction on the testing data.
 
 
